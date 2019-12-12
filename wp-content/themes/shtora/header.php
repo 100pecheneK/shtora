@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
     <?php wp_head() ?>
-    <title>Шторки</title>
+    <title><?php bloginfo('name'); ?></title>
     <style>
         .banner {
             background: url(<?= get_template_directory_uri() . '/img/top.png' ?>) no-repeat;

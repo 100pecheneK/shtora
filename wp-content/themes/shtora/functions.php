@@ -130,6 +130,7 @@ function shtora_scripts()
     wp_enqueue_style('shtora-style-bootstrap', get_template_directory_uri() . '/css/bootstrap.css');
     wp_enqueue_style('shtora-style-custom-bootstrap', get_template_directory_uri() . '/css/custom-bootstrap.css');
     wp_enqueue_style('shtora-style-main', get_template_directory_uri() . '/css/main.css');
+    wp_enqueue_style('shtora-style-fa', get_template_directory_uri() . '/css/all.css');
 
     wp_enqueue_script('shtora-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true);
     wp_enqueue_script('shtora-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true);
@@ -168,4 +169,51 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {
     require get_template_directory() . '/inc/jetpack.php';
 }
+
+add_action('init', 'shtora_register_post_types');
+function shtora_register_post_types()
+{
+    $main_page = array(
+        'name' => _x('Главная страница', 'post type general name', 'your-plugin-textdomain'),
+        'singular_name' => _x('Главная страница', 'post type singular name', 'your-plugin-textdomain')
+    );
+    $args = array(
+        'labels' => $main_page,
+        'description' => __('Главная страница', 'your-plugin-textdomain'),
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => '/'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array('title', 'author')
+    );
+    register_post_type('mainpage', $args);
+    $reviews = array(
+        'name' => _x('Отзывы', 'post type general name', 'your-plugin-textdomain'),
+        'singular_name' => _x('Отзыв', 'post type singular name', 'your-plugin-textdomain')
+    );
+    $args2 = array(
+        'labels' => $reviews,
+        'description' => __('Отзывы', 'your-plugin-textdomain'),
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => '/reviews'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array('title', 'author')
+    );
+    register_post_type('reviews', $args2);
+
+}
+
 
