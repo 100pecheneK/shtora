@@ -40,7 +40,7 @@ $social->the_post();
                             <a class="px-3" href="shtora.html">штора 4</a>
                             <a class="px-3" href="shtora.html">штора 5</a>
                             <a class="px-3" href="shtora.html">штора 6</a>
-                            <a class="px-3" href="#">Контакты</a>
+                            <a class="px-3" href="#contacts">Контакты</a>
                         </div>
                     </nav>
                 </div>
@@ -260,6 +260,7 @@ $args = array(
 $social = new WP_Query($args);
 $social->the_post();
 ?>
+<a name="contacts"></a>
 <section>
     <div class="container">
         <div class="row">
